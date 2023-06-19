@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.example.utils.LogUtil.logException;
 import static org.example.utils.LogUtil.logInfo;
@@ -24,7 +25,7 @@ public class BookHelper {
         try (Session session = sessionFactory.openSession()) {
             logInfo("Selecting book with id = " + id, CLASSNAME);
             book = session.get(Book.class, id);
-            if (book == null) {
+            if (Objects.isNull(book)) {
                 logInfo("None found", CLASSNAME);
             }
         } catch (Exception e) {

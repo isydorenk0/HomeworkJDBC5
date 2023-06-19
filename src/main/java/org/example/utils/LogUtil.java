@@ -22,7 +22,7 @@ public class LogUtil {
     }
 
     public static void logException(Exception e, String className) {
+        Logger log = getLoggerWrapper(className);
         log.error(e.getMessage());
-        log.error("ClassName", "asd", "asd");
     }
 }

@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.example.utils.LogUtil.*;
 
@@ -63,7 +64,7 @@ public class AuthorHelper {
 
     public void delAuthor(String lastName) {
         try (Session session = sessionFactory.openSession()) {
-            int deleted = 0;
+            int deleted;
             logInfo("Deleting author " + lastName, CLASSNAME);
             CriteriaDelete<Author> cd = session.getCriteriaBuilder().createCriteriaDelete(Author.class);
             Root<Author> root = cd.from(Author.class);
@@ -80,9 +81,9 @@ public class AuthorHelper {
     public Author getAuthorById(long id) {
         Author author = null;
         try (Session session = sessionFactory.openSession()) {
-            logInfo("Selecting author with id = " + author.getId(), CLASSNAME);
+            logInfo("Selecting author with id = " + id, CLASSNAME);
             author = session.get(Author.class, id);
-            if (author == null) {
+            if (Objects.isNull(author)) {
                 logInfo("None found", CLASSNAME);
             }
         } catch (Exception e) {

@@ -6,6 +6,7 @@ import org.example.utils.AuthorHelper;
 import org.example.utils.BookHelper;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Main {
 
@@ -25,7 +26,7 @@ public class Main {
         }
 
         author = authorHelper.getAuthorById(1);
-        if (author != null){
+        if (Objects.nonNull(author)){
             System.out.println(author);
         }
         authorHelper.delAuthor("Shevchenko");
@@ -43,7 +44,7 @@ public class Main {
             System.out.println(book);
         }
         Book book = bookHelper.getBookById(1);
-        if (book != null) {
+        if (Objects.nonNull(book)) {
             book.setTitle("NewTitle");
             bookHelper.updateBookById(book);
         }
